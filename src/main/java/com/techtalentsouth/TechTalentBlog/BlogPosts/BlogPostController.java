@@ -28,8 +28,6 @@ public class BlogPostController {
 		return "blogpost/index";
 	}
 
-	private BlogPost blogPost;
-
 	@PostMapping(value = "/blog_posts/new")
 	public String create(BlogPost blogPost, Model model) {
 		blogPostRepository.save(blogPost);
@@ -59,14 +57,12 @@ public class BlogPostController {
         }
         return true;
     }
-
-	
+//	Delete URL: localhost:8080/blog_posts/1
     @RequestMapping(value = "/blog_posts/{id}", method = RequestMethod.DELETE)
     public RedirectView deletePostWithId(@PathVariable Long id, BlogPost blogPost) {
     	delete(id);
         blogPostRepository.deleteById(id);
         return new RedirectView("/");
-
     }
 	
 }
